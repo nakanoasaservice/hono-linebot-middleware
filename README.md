@@ -1,26 +1,43 @@
 # @nakanoaas/hono-linebot-middleware
 
-Hono middleware for LINE Bot webhook signature validation built on Web Standards.
+<div align="center">
 
-## Features
+[![npm version](https://img.shields.io/npm/v/@nakanoaas/hono-linebot-middleware.svg)](https://www.npmjs.com/package/@nakanoaas/hono-linebot-middleware)
+[![License](https://img.shields.io/npm/l/@nakanoaas/hono-linebot-middleware.svg)](https://github.com/nakanoasaservice/hono-linebot-middleware/blob/main/LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
-- **Built on Web Standards** - Uses Web Crypto API for platform-independent implementation
-- **Works on any runtime** - Compatible with Cloudflare Workers, Node.js, Deno, Bun, and any environment that supports Web Standards
-- **TypeScript support** - Full TypeScript definitions included
-- **Lightweight & Simple** - Minimal API surface with zero runtime dependencies
-- **Hono integration** - Seamlessly integrates with Hono framework
+**Hono middleware for LINE Bot webhook signature validation built on Web Standards**
 
-## Installation
+</div>
+
+---
+
+A lightweight, zero-dependency middleware for validating LINE Bot webhook signatures in [Hono](https://hono.dev/) applications. Built entirely on Web Standards APIs, it works seamlessly across Cloudflare Workers, Node.js, Deno, Bun, and any runtime that supports Web Crypto API.
+
+## ✨ Features
+
+- 🔒 **Secure by Default** - Validates webhook signatures using HMAC-SHA256
+- 🌐 **Web Standards** - Built on Web Crypto API, no runtime dependencies
+- 🚀 **Universal Runtime Support** - Works on Cloudflare Workers, Node.js, Deno, Bun, and more
+- 📦 **Zero Dependencies** - Lightweight and fast
+- 💪 **TypeScript First** - Full type definitions included
+- 🎯 **Simple API** - One function, zero configuration
+
+## 📦 Installation
 
 ```bash
 npm install @nakanoaas/hono-linebot-middleware
-# or
+```
+
+```bash
 pnpm add @nakanoaas/hono-linebot-middleware
-# or
+```
+
+```bash
 yarn add @nakanoaas/hono-linebot-middleware
 ```
 
-## Basic Usage
+## 🚀 Quick Start
 
 ```typescript
 import { Hono } from "hono";
@@ -33,33 +50,40 @@ const channelSecret = /* LINE Channel Secret */;
 
 app.post("/webhook", lineBotMiddleware(channelSecret), async (c) => {
   const events = await c.req.json<WebhookRequestBody>();
-  
-	// Handle LINE webhook events
+
+  // Handle LINE webhook events
 
   return c.body(null, 204);
 });
 ```
 
-## API Reference
+That's it! The middleware automatically validates incoming webhook requests and rejects invalid signatures with a `401 Unauthorized` response.
 
-### `lineBotMiddleware(channelSecret: string): MiddlewareHandler`
+## 📚 Documentation
+
+### API
+
+#### `lineBotMiddleware(channelSecret: string): MiddlewareHandler`
 
 Creates a Hono middleware that validates LINE Bot webhook signatures.
 
 **Parameters:**
-- `channelSecret` (string): Your LINE Bot channel secret
+
+- `channelSecret` (`string`): Your LINE Bot channel secret
 
 **Returns:**
+
 - `MiddlewareHandler`: A Hono middleware handler
 
 **Behavior:**
+
 - Validates the `x-line-signature` header using HMAC-SHA256
-- Throws `HTTPException` with status 401 if:
+- Throws `HTTPException` with status `401` if:
   - The signature header is missing
   - The signature validation fails
 - Calls `next()` if validation succeeds
 
-## Usage Examples
+## 💡 Examples
 
 ### Cloudflare Workers
 
@@ -146,14 +170,14 @@ export default {
 };
 ```
 
-## Technical Details
+## 🔧 Technical Details
 
 - **Signature Algorithm**: HMAC-SHA256
 - **Signature Header**: `x-line-signature` (Base64 encoded)
 - **Web Crypto API**: Uses `crypto.subtle.verify()` for signature validation
 - **Hono Version**: Requires Hono ^4.0.0
 
-## Development
+## 🛠️ Development
 
 ### Prerequisites
 
@@ -191,13 +215,11 @@ pnpm check
 pnpm check:fix
 ```
 
-## License
+## 📄 License
 
-Apache-2.0
+Apache-2.0 © [Nakano as a Service](https://github.com/nakanoasaservice)
 
-## Related Projects
+## 🔗 Related Projects
 
 - [Hono](https://hono.dev/) - Web framework built on Web Standards
 - [@line/bot-sdk](https://github.com/line/line-bot-sdk-nodejs) - LINE Messaging API SDK for nodejs
-
-
