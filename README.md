@@ -3,6 +3,7 @@
 <div align="center">
 
 [![npm version](https://img.shields.io/npm/v/@nakanoaas/hono-linebot-middleware.svg)](https://www.npmjs.com/package/@nakanoaas/hono-linebot-middleware)
+[![JSR](https://jsr.io/badges/@nakanoaas/hono-linebot-middleware)](https://jsr.io/@nakanoaas/hono-linebot-middleware)
 [![License](https://img.shields.io/npm/l/@nakanoaas/hono-linebot-middleware.svg)](https://github.com/nakanoasaservice/hono-linebot-middleware/blob/main/LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
@@ -25,6 +26,8 @@ A lightweight, zero-dependency middleware for validating LINE Bot webhook signat
 
 ## 📦 Installation
 
+### via npm
+
 ```bash
 npm install @nakanoaas/hono-linebot-middleware
 ```
@@ -35,6 +38,18 @@ pnpm add @nakanoaas/hono-linebot-middleware
 
 ```bash
 yarn add @nakanoaas/hono-linebot-middleware
+```
+
+### via JSR (Deno)
+
+```bash
+deno add jsr:@nakanoaas/hono-linebot-middleware
+```
+
+Or use directly in your code:
+
+```typescript
+import { lineBotMiddleware } from "jsr:@nakanoaas/hono-linebot-middleware";
 ```
 
 ## 🚀 Quick Start
