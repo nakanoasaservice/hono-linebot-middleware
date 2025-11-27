@@ -59,79 +59,6 @@ app.post("/webhook", lineBotMiddleware(channelSecret), async (c) => {
 
 That's it! The middleware automatically validates incoming webhook requests and rejects invalid signatures with a `401 Unauthorized` response.
 
-## 📚 Documentation
-
-### API
-
-#### `lineBotMiddleware(channelSecret: string): MiddlewareHandler`
-
-Creates a Hono middleware that validates LINE Bot webhook signatures.
-
-**Parameters:**
-
-- `channelSecret` (`string`): Your LINE Bot channel secret
-
-**Returns:**
-
-- `MiddlewareHandler`: A Hono middleware handler
-
-**Behavior:**
-
-- Validates the `x-line-signature` header using HMAC-SHA256
-- Throws `HTTPException` with status `401` if:
-  - The signature header is missing
-  - The signature validation fails
-- Calls `next()` if validation succeeds
-
-**Throws:**
-
-- `Error`: If `channelSecret` is not a string
-- `HTTPException` (401): If the signature header is missing or validation fails
-
-#### `importKeyFromChannelSecret(channelSecret: string): Promise<CryptoKey>`
-
-Imports a cryptographic key from a LINE Bot channel secret for HMAC-SHA256 signature verification.
-
-**Parameters:**
-
-- `channelSecret` (`string`): The LINE Bot channel secret string
-
-**Returns:**
-
-- `Promise<CryptoKey>`: A Promise that resolves to a CryptoKey configured for HMAC-SHA256 verification
-
-**Example:**
-
-```typescript
-import { importKeyFromChannelSecret } from "@nakanoaas/hono-linebot-middleware";
-
-const key = await importKeyFromChannelSecret("your-channel-secret");
-```
-
-#### `validateSignature(body: BufferSource, key: CryptoKey, signature: string): Promise<boolean>`
-
-Validates a LINE Bot webhook signature using HMAC-SHA256.
-
-**Parameters:**
-
-- `body` (`BufferSource`): The request body as a BufferSource (ArrayBuffer, TypedArray, or DataView)
-- `key` (`CryptoKey`): The CryptoKey imported from the channel secret
-- `signature` (`string`): The Base64-encoded signature from the `x-line-signature` header
-
-**Returns:**
-
-- `Promise<boolean>`: A Promise that resolves to `true` if the signature is valid, `false` otherwise
-
-**Example:**
-
-```typescript
-import { importKeyFromChannelSecret, validateSignature } from "@nakanoaas/hono-linebot-middleware";
-
-const body = await request.arrayBuffer();
-const key = await importKeyFromChannelSecret(channelSecret);
-const isValid = await validateSignature(body, key, signature);
-```
-
 ## 💡 Examples
 
 ### Cloudflare Workers
@@ -217,6 +144,79 @@ export default {
   port: 3000,
   fetch: app.fetch,
 };
+```
+
+## 📚 Documentation
+
+### API
+
+#### `lineBotMiddleware(channelSecret: string): MiddlewareHandler`
+
+Creates a Hono middleware that validates LINE Bot webhook signatures.
+
+**Parameters:**
+
+- `channelSecret` (`string`): Your LINE Bot channel secret
+
+**Returns:**
+
+- `MiddlewareHandler`: A Hono middleware handler
+
+**Behavior:**
+
+- Validates the `x-line-signature` header using HMAC-SHA256
+- Throws `HTTPException` with status `401` if:
+  - The signature header is missing
+  - The signature validation fails
+- Calls `next()` if validation succeeds
+
+**Throws:**
+
+- `Error`: If `channelSecret` is not a string
+- `HTTPException` (401): If the signature header is missing or validation fails
+
+#### `importKeyFromChannelSecret(channelSecret: string): Promise<CryptoKey>`
+
+Imports a cryptographic key from a LINE Bot channel secret for HMAC-SHA256 signature verification.
+
+**Parameters:**
+
+- `channelSecret` (`string`): The LINE Bot channel secret string
+
+**Returns:**
+
+- `Promise<CryptoKey>`: A Promise that resolves to a CryptoKey configured for HMAC-SHA256 verification
+
+**Example:**
+
+```typescript
+import { importKeyFromChannelSecret } from "@nakanoaas/hono-linebot-middleware";
+
+const key = await importKeyFromChannelSecret("your-channel-secret");
+```
+
+#### `validateSignature(body: BufferSource, key: CryptoKey, signature: string): Promise<boolean>`
+
+Validates a LINE Bot webhook signature using HMAC-SHA256.
+
+**Parameters:**
+
+- `body` (`BufferSource`): The request body as a BufferSource (ArrayBuffer, TypedArray, or DataView)
+- `key` (`CryptoKey`): The CryptoKey imported from the channel secret
+- `signature` (`string`): The Base64-encoded signature from the `x-line-signature` header
+
+**Returns:**
+
+- `Promise<boolean>`: A Promise that resolves to `true` if the signature is valid, `false` otherwise
+
+**Example:**
+
+```typescript
+import { importKeyFromChannelSecret, validateSignature } from "@nakanoaas/hono-linebot-middleware";
+
+const body = await request.arrayBuffer();
+const key = await importKeyFromChannelSecret(channelSecret);
+const isValid = await validateSignature(body, key, signature);
 ```
 
 ## 🔧 Technical Details
