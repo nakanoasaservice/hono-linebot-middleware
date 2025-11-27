@@ -16,6 +16,9 @@
 		},
 		"./package.json": "./package.json"
 	},
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"build": "tsdown",
 		"cf-typegen": "wrangler types",
