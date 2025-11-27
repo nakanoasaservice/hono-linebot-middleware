@@ -1,6 +1,6 @@
 {
 	"name": "@nakanoaas/hono-linebot-middleware",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Hono middleware for LINE Bot webhook signature validation built on Web Standards",
 	"author": "Nakano as a Service",
 	"license": "Apache-2.0",
@@ -10,6 +10,21 @@
 		"access": "public",
 		"provenance": true
 	},
+	"homepage": "https://github.com/nakanoasaservice/hono-linebot-middleware",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nakanoasaservice/hono-linebot-middleware.git"
+	},
+	"bugs": {
+		"url": "https://github.com/nakanoasaservice/hono-linebot-middleware/issues"
+	},
+	"keywords": [
+		"hono",
+		"line",
+		"middleware",
+		"cloudflare",
+		"workers"
+	],
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.cts",
@@ -42,5 +57,5 @@
 		"vitest": "~3.2.4",
 		"wrangler": "^4.50.0"
 	},
-	"packageManager": "pnpm@10.20.0"
+	"packageManager": "pnpm@10.23.0"
 }
