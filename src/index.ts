@@ -10,7 +10,7 @@ import { decodeBase64 } from "hono/utils/encode";
  *
  * @example
  * ```typescript
- * const key = await importKeyFromChannelSecret("your-channel-secret");
+ * const key = await importKeyFromChannelSecret("YOUR_CHANNEL_SECRET");
  * ```
  */
 export async function importKeyFromChannelSecret(
@@ -44,7 +44,7 @@ export async function importKeyFromChannelSecret(
  * @example
  * ```typescript
  * const body = await request.arrayBuffer();
- * const key = await importKeyFromChannelSecret(channelSecret);
+ * const key = await importKeyFromChannelSecret("YOUR_CHANNEL_SECRET");
  * const isValid = await validateSignature(body, key, signature);
  * ```
  */
@@ -75,11 +75,12 @@ export async function validateSignature(
  * @example
  * ```typescript
  * import { Hono } from "hono";
+ * import type { WebhookRequestBody } from "@line/bot-sdk";
  * import { lineBotMiddleware } from "@nakanoaas/hono-linebot-middleware";
  *
  * const app = new Hono();
- * app.post("/webhook", lineBotMiddleware(process.env.LINE_CHANNEL_SECRET!), async (c) => {
- *   const events = await c.req.json();
+ * app.post("/webhook", lineBotMiddleware("YOUR_CHANNEL_SECRET"), async (c) => {
+ *   const events = await c.req.json<WebhookRequestBody>();
  *   // Handle webhook events
  *   return c.body(null, 204);
  * });
