@@ -1,7 +1,7 @@
 {
 	"name": "@nakanoaas/hono-linebot-middleware",
 	"version": "0.0.1",
-	"description": "Hono middleware for Line Bot built on Web Standards",
+	"description": "Hono middleware for LINE Bot webhook signature validation built on Web Standards",
 	"author": "Nakano as a Service",
 	"license": "Apache-2.0",
 	"type": "module",
