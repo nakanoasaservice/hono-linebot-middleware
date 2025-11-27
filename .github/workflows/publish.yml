@@ -36,6 +36,9 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Publish to JSR
+        run: pnpm dlx jsr publish
+
       - name: Publish to npm
         run: pnpm publish
 
