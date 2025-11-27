@@ -18,6 +18,9 @@ export default defineConfig({
 				name: string;
 				version: string;
 				license: string;
+				peerDependencies: {
+					hono: string;
+				};
 			};
 
 			await writeFile(
@@ -29,10 +32,10 @@ export default defineConfig({
 						license: packageJson.license,
 						exports: "./src/index.ts",
 						publish: {
-							include: ["src", "README.md"],
+							include: ["src", "README.md", "LICENSE"],
 						},
 						imports: {
-							hono: "jsr:@hono/hono@^4.0.0",
+							hono: `jsr:@hono/hono@${packageJson.peerDependencies.hono}`,
 						},
 					},
 					null,
