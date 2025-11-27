@@ -5,7 +5,7 @@ import {
 	importKeyFromChannelSecret,
 	lineBotMiddleware,
 	validateSignature,
-} from "../src/index";
+} from "../src/index.ts";
 
 const body = { hello: "world" };
 const secret = "test_secret";

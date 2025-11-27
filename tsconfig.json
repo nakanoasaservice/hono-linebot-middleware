@@ -9,6 +9,8 @@
 		"lib": ["ESNext"],
 		"jsx": "react-jsx",
 		"jsxImportSource": "hono/jsx",
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
 
 		"erasableSyntaxOnly": true,
 		"forceConsistentCasingInFileNames": true,
