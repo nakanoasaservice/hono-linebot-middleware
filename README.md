@@ -17,12 +17,9 @@ A lightweight, zero-dependency middleware for validating LINE Bot webhook signat
 
 ## ✨ Features
 
-- 🔒 **Secure by Default** - Validates webhook signatures using HMAC-SHA256
 - 🌐 **Web Standards** - Built on Web Crypto API, no runtime dependencies
+- ⚡ **No nodejs_compat Required** - Works on Cloudflare Workers without the nodejs_compat flag
 - 🚀 **Universal Runtime Support** - Works on Cloudflare Workers, Node.js, Deno, Bun, and more
-- 📦 **Zero Dependencies** - Lightweight and fast
-- 💪 **TypeScript First** - Full type definitions included
-- 🎯 **Simple API** - One function, zero configuration
 
 ## 📦 Installation
 
