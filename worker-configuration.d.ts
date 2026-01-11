@@ -1,5 +1,5 @@
 /* eslint-disable */
-// Runtime types generated with workerd@1.20251125.0 2025-11-09 
+// Runtime types generated with workerd@1.20251217.0 2025-11-09 
 // Begin runtime types
 /*! *****************************************************************************
 Copyright (c) Cloudflare. All rights reserved.
@@ -3267,7 +3267,7 @@ interface WorkerStubEntrypointOptions {
     props?: any;
 }
 interface WorkerLoader {
-    get(name: string, getCode: () => WorkerLoaderWorkerCode | Promise<WorkerLoaderWorkerCode>): WorkerStub;
+    get(name: string | null, getCode: () => WorkerLoaderWorkerCode | Promise<WorkerLoaderWorkerCode>): WorkerStub;
 }
 interface WorkerLoaderModule {
     js?: string;
@@ -8449,7 +8449,7 @@ type AiOptions = {
      * Maximum 5 tags are allowed each request.
      * Duplicate tags will removed.
      */
-    tags: string[];
+    tags?: string[];
     gateway?: GatewayOptions;
     returnRawResponse?: boolean;
     prefix?: string;
@@ -10794,8 +10794,11 @@ type InstanceStatus = {
      | 'complete' | 'waiting' // instance is hibernating and waiting for sleep or event to finish
      | 'waitingForPause' // instance is finishing the current work to pause
      | 'unknown';
-    error?: string;
-    output?: object;
+    error?: {
+        name: string;
+        message: string;
+    };
+    output?: unknown;
 };
 interface WorkflowError {
     code?: number;
