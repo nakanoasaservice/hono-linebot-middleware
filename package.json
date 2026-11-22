@@ -58,5 +58,11 @@
 	"peerDependencies": {
 		"hono": "^4.0.0"
 	},
+	"devEngines": {
+		"runtime": {
+			"name": "node",
+			"version": "24.22.1"
+		}
+	},
 	"packageManager": "pnpm@12.21.0"
 }
