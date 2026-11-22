@@ -1,11 +1,7 @@
 import { Hono } from "hono";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 
-import {
-	importKeyFromChannelSecret,
-	lineBotMiddleware,
-	validateSignature,
-} from "../src/index.ts";
+import { importKeyFromChannelSecret, lineBotMiddleware, validateSignature } from "../src/index.ts";
 
 const body = { hello: "world" };
 const secret = "test_secret";
@@ -31,9 +27,7 @@ describe("lineBotMiddleware", () => {
 	});
 
 	it("should throw error when channel secret is missing", async () => {
-		expect(() => lineBotMiddleware(null as unknown as string)).toThrowError(
-			"channel secret",
-		);
+		expect(() => lineBotMiddleware(null as unknown as string)).toThrowError("channel secret");
 	});
 
 	it("should return 401 when signature is missing", async () => {
