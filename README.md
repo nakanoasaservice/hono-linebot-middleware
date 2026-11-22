@@ -84,11 +84,11 @@ import { Hono } from "hono";
 const app = new Hono();
 
 app.post("/webhook", lineBotMiddleware(env.LINE_CHANNEL_SECRET!), async (c) => {
-  const events = await c.req.json<WebhookRequestBody>();
+	const events = await c.req.json<WebhookRequestBody>();
 
-  // Handle LINE webhook events
+	// Handle LINE webhook events
 
-  return c.body(null, 204);
+	return c.body(null, 204);
 });
 
 export default app;
@@ -105,11 +105,11 @@ import { lineBotMiddleware } from "@nakanoaas/hono-linebot-middleware";
 const app = new Hono();
 
 app.post("/webhook", lineBotMiddleware(process.env.LINE_CHANNEL_SECRET!), async (c) => {
-  const events = await c.req.json<WebhookRequestBody>();
+	const events = await c.req.json<WebhookRequestBody>();
 
-  // Handle LINE webhook events
+	// Handle LINE webhook events
 
-  return c.body(null, 204);
+	return c.body(null, 204);
 });
 
 serve(app);
@@ -125,11 +125,11 @@ import { lineBotMiddleware } from "@nakanoaas/hono-linebot-middleware";
 const app = new Hono();
 
 app.post("/webhook", lineBotMiddleware(Deno.env.get("LINE_CHANNEL_SECRET")!), async (c) => {
-  const events = await c.req.json<WebhookRequestBody>();
+	const events = await c.req.json<WebhookRequestBody>();
 
-  // Handle LINE webhook events
+	// Handle LINE webhook events
 
-  return c.body(null, 204);
+	return c.body(null, 204);
 });
 
 Deno.serve(app.fetch);
@@ -145,16 +145,16 @@ import { lineBotMiddleware } from "@nakanoaas/hono-linebot-middleware";
 const app = new Hono();
 
 app.post("/webhook", lineBotMiddleware(Bun.env.LINE_CHANNEL_SECRET!), async (c) => {
-  const events = await c.req.json<WebhookRequestBody>();
+	const events = await c.req.json<WebhookRequestBody>();
 
-  // Handle LINE webhook events
+	// Handle LINE webhook events
 
-  return c.body(null, 204);
+	return c.body(null, 204);
 });
 
 export default {
-  port: 3000,
-  fetch: app.fetch,
+	port: 3000,
+	fetch: app.fetch,
 };
 ```
 
@@ -284,3 +284,11 @@ Apache-2.0 © [Nakano as a Service](https://github.com/nakanoasaservice)
 
 - [Hono](https://hono.dev/) - Web framework built on Web Standards
 - [@line/bot-sdk](https://github.com/line/line-bot-sdk-nodejs) - LINE Messaging API SDK for nodejs
+
+## Development
+
+Use Node.js 24 and the pnpm version pinned in `package.json`.
+Run `pnpm install --frozen-lockfile`, `pnpm check`, `pnpm test`, and `pnpm build`.
+Vite+ provides formatting, linting, type checks, tests and packaging. Tests
+continue to run in the Cloudflare Workers runtime. Library builds retain
+ESM, CommonJS, declaration files and source maps.

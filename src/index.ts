@@ -13,9 +13,7 @@ import { decodeBase64 } from "hono/utils/encode";
  * const key = await importKeyFromChannelSecret("YOUR_CHANNEL_SECRET");
  * ```
  */
-export async function importKeyFromChannelSecret(
-	channelSecret: string,
-): Promise<CryptoKey> {
+export async function importKeyFromChannelSecret(channelSecret: string): Promise<CryptoKey> {
 	const encoder = new TextEncoder();
 	const keyBytes = encoder.encode(channelSecret);
 

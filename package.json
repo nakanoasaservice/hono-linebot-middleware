@@ -2,29 +2,28 @@
 	"name": "@nakanoaas/hono-linebot-middleware",
 	"version": "0.0.5",
 	"description": "Hono middleware for LINE Bot webhook signature validation built on Web Standards",
-	"author": "Nakano as a Service",
-	"license": "Apache-2.0",
-	"type": "module",
-	"sideEffects": false,
-	"publishConfig": {
-		"access": "public",
-		"provenance": true
-	},
+	"keywords": [
+		"cloudflare",
+		"hono",
+		"line",
+		"middleware",
+		"workers"
+	],
 	"homepage": "https://github.com/nakanoasaservice/hono-linebot-middleware",
+	"bugs": {
+		"url": "https://github.com/nakanoasaservice/hono-linebot-middleware/issues"
+	},
+	"license": "Apache-2.0",
+	"author": "Nakano as a Service",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/nakanoasaservice/hono-linebot-middleware.git"
 	},
-	"bugs": {
-		"url": "https://github.com/nakanoasaservice/hono-linebot-middleware/issues"
-	},
-	"keywords": [
-		"hono",
-		"line",
-		"middleware",
-		"cloudflare",
-		"workers"
+	"files": [
+		"dist"
 	],
+	"type": "module",
+	"sideEffects": false,
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.cts",
@@ -35,28 +34,29 @@
 		},
 		"./package.json": "./package.json"
 	},
-	"files": [
-		"dist"
-	],
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
 	"scripts": {
-		"build": "tsdown",
+		"build": "vp pack",
 		"cf-typegen": "wrangler types",
 		"check-types": "tsc --noEmit",
-		"check:fix": "biome check --write",
-		"check": "biome check",
-		"test": "vitest"
+		"check:fix": "vp check --fix",
+		"check": "vp check",
+		"test": "vp test run"
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-plugin": "^1.8.4",
+		"@types/node": "^24.10.1",
+		"jsr": "0.14.3",
+		"typescript": "^5.9.3",
+		"vite-plus": "catalog:",
+		"vitest": "catalog:",
+		"wrangler": "^4.50.0"
 	},
 	"peerDependencies": {
 		"hono": "^4.0.0"
 	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.3.7",
-		"@cloudflare/vitest-pool-workers": "^0.22.0",
-		"@types/node": "^24.10.1",
-		"tsdown": "^0.23.0",
-		"typescript": "^5.9.3",
-		"vitest": "~4.1.5",
-		"wrangler": "^4.50.0"
-	},
-	"packageManager": "pnpm@10.28.0"
+	"packageManager": "pnpm@12.21.0"
 }
